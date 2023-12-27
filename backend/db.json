@@ -1,0 +1,52 @@
+{
+  "thoughts": [
+    {
+      "id": 2,
+      "content": "Estudando Angular",
+      "author": "Dev Alura",
+      "model": "modelo2"
+    },
+    {
+      "id": 3,
+      "content": "Angular é o melhor'",
+      "author": "Dev Alura",
+      "model": "modelo3"
+    },
+    {
+      "id": 4,
+      "content": "O card é um componente burro (dump component), apenas recebe a informação através do Output!",
+      "author": "Ale",
+      "model": "modelo3"
+    },
+    {
+      "id": 6,
+      "content": "A lista geralmente é responsável pela consulta das informações e então escolhe o que fazer a seguir.",
+      "author": "Ale",
+      "model": "modelo2"
+    },
+    {
+      "id": 7,
+      "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "author": "Ale",
+      "model": "modelo2"
+    },
+    {
+      "content": "Pensamento Teste",
+      "author": "Autor desconhecido",
+      "model": "modelo1",
+      "id": 8
+    },
+    {
+      "content": "Sou eu quem agradece",
+      "author": "Cinthia Chagas",
+      "model": "modelo1",
+      "id": 9
+    },
+    {
+      "content": "Interessante",
+      "author": "Desconhecido",
+      "model": "modelo1",
+      "id": 10
+    }
+  ]
+}
