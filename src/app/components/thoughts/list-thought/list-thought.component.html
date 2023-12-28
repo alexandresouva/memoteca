@@ -1,0 +1,20 @@
+<section class="container">
+    <header class="header d-flex">
+      <h2 class="ff-inter">Meu Mural</h2>
+      <button routerLink="/novoPensamento" class="botao">Adicionar pensamento</button>
+    </header>
+    <div class="mural" *ngIf="thoughtList.length > 0; else emptyList">
+      <div *ngFor="let thought of thoughtList">
+        <app-thought [thought]="thought"></app-thought>
+      </div>
+    </div>
+</section>
+
+<!-- Se a lista de pensamentos estivar vazia -->
+<ng-template #emptyList>
+  <div class="ff-inter sem-pensamentos">
+    <p>Hmm, parece que você ainda não adicionou nenhum pensamento.</p>
+  </div>
+</ng-template>
+  
+  

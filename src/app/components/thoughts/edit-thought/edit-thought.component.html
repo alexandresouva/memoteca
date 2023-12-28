@@ -1,4 +1,4 @@
-<section class="container criar-pensamentos ff-inter">
+<section class="container editar-pensamentos ff-inter">
     <header class="header">
       <h2>Adicione um <br>pensamento novo:</h2>
     </header>
@@ -30,7 +30,7 @@
               id="modelo1"
               value="modelo1"
               name="modelo-card"
-              checked
+              [checked]="thought.model === 'modelo1'"
             >
             <div class="custom-radio">
               <span></span>
@@ -52,6 +52,7 @@
               id="modelo2"
               value="modelo2"
               name="modelo-card"
+              [checked]="thought.model === 'modelo2'"
             >
             <div class="custom-radio">
               <span></span>
@@ -73,6 +74,7 @@
               id="modelo3"
               value="modelo3"
               name="modelo-card"
+              [checked]="thought.model === 'modelo3'"
             >
             <div class="custom-radio">
               <span></span>
@@ -88,7 +90,7 @@
         </div>
       </div>
       <div class="acoes">
-        <button class="botao" (click)="createThought()">Salvar</button>
+        <button class="botao" (click)="editThought()">Salvar</button>
         <button class="botao" (click)="returnToHome()">Cancelar</button>
       </div>
     </form>
