@@ -2,25 +2,41 @@
     <header class="header">
       <h2>Adicione um <br>pensamento novo:</h2>
     </header>
-    <form>
+    <form [formGroup]="form" *ngIf="form">
+      
+      <!-- Thought -->
       <label for="pensamento">Pensamento</label>
       <input
         type="textarea"
         class="input"
         id="pensamento"
-        name="pensamento"
+        formControlName="content"
         placeholder="Digite o pensamento"
-        [(ngModel)]="thought.content"
       >
+      <div class="mensagem__erro" *ngIf="form.get('content')?.hasError('required') && form.get('content')?.touched">
+        O pensamento é obrigatório.
+      </div>
+      <div class="mensagem__erro" *ngIf="form.get('content')?.hasError('pattern') && form.get('content')?.touched">
+        O pensamento não pode consistir apenas em espaços em branco.
+      </div>
+
+      <!-- Author -->
       <label for="autoria">Autoria ou fonte</label>
       <input
         type="text"
         class="input"
         id="autoria"
-        name="autoria"
+        formControlName="author"
         placeholder="Digite a autoria ou fonte"
-        [(ngModel)]="thought.author"
       >
+      <div class="mensagem__erro" *ngIf="form.get('author')?.hasError('required') && form.get('author')?.touched">
+        O autor é obrigatório.
+      </div>
+      <div class="mensagem__erro" *ngIf="form.get('author')?.hasError('minlength') && form.get('author')?.touched">
+        O nome do autor deve ter no mínimo 3 caracteres.
+      </div>
+
+      <!-- Model -->
       <label for="modelo">Selecione o modelo do card:</label>
       <div class="container-radio">
         <div class="radio-modelo">
@@ -29,8 +45,8 @@
               type="radio"
               id="modelo1"
               value="modelo1"
-              name="modelo-card"
-              [checked]="thought.model === 'modelo1'"
+              formControlName="model"
+              [checked]="form.get('model')?.value === 'modelo1'"
             >
             <div class="custom-radio">
               <span></span>
@@ -40,8 +56,8 @@
           Prévia:
           <div class="modelo modelo1 ff-roboto-mono">
             <img src="../../../../assets/images/modelo1.png" alt="Aspas azuis">
-            <p class="conteudo">{{ thought.content }}</p>
-            <p class="autoria"><b>{{ thought.author }}</b></p>
+            <p class="conteudo">{{ form.get('content')?.value }}</p>
+            <p class="autoria"><b>{{ form.get('author')?.value }}</b></p>
           </div>
         </div>
   
@@ -51,8 +67,8 @@
               type="radio"
               id="modelo2"
               value="modelo2"
-              name="modelo-card"
-              [checked]="thought.model === 'modelo2'"
+              formControlName="model"
+              [checked]="form.get('model')?.value === 'modelo2'"
             >
             <div class="custom-radio">
               <span></span>
@@ -62,8 +78,8 @@
           Prévia:
           <div class="modelo modelo2 ff-roboto-mono">
             <img src="../../../../assets/images/modelo2.png" alt="Aspas azul claro">
-            <p class="conteudo">{{ thought.content }}</p>
-            <p class="autoria"><b>{{ thought.author }}</b></p>
+            <p class="conteudo">{{ form.get('content')?.value }}</p>
+            <p class="autoria"><b>{{ form.get('author')?.value }}</b></p>
           </div>
         </div>
   
@@ -73,8 +89,8 @@
               type="radio"
               id="modelo3"
               value="modelo3"
-              name="modelo-card"
-              [checked]="thought.model === 'modelo3'"
+              formControlName="model"
+              [checked]="form.get('model')?.value  === 'modelo3'"
             >
             <div class="custom-radio">
               <span></span>
@@ -84,13 +100,20 @@
           Prévia:
           <div class="modelo modelo3 ff-roboto-mono">
             <img src="../../../../assets/images/modelo3.png" alt="Aspas verdes">
-            <p class="conteudo">{{ thought.content }}</p>
-            <p class="autoria"><b>{{ thought.author }}</b></p>
+            <p class="conteudo">{{ form.get('content')?.value }}</p>
+            <p class="autoria"><b>{{ form.get('author')?.value }}</b></p>
           </div>
         </div>
       </div>
       <div class="acoes">
-        <button class="botao" (click)="editThought()">Salvar</button>
+        <button 
+          class="botao" 
+          (click)="editThought()" 
+          [disabled]="!form.valid"
+          [title]="form.valid ? '' : 'Preencha todos os campos corretamente'"
+        >
+          Salvar
+        </button>
         <button class="botao" (click)="returnToHome()">Cancelar</button>
       </div>
     </form>

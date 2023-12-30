@@ -48,9 +48,23 @@ h2 {
   cursor: pointer;
 }
 
+.botao:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transition: 0.5s ease;
+}
+
 .botao:hover {
   border: 2px solid #84EEC1;
   color: #84EEC1;
+}
+
+.mensagem__erro {
+  font-size: 12px;
+  margin-left: 5px;
+  color: red;
+  margin-top: -25px;
+  margin-bottom: 20px;
 }
 
 @media (min-width: 576px) {

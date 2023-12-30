@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ThoughtModel } from 'src/app/enums/thoughtModel';
-import { Thought } from 'src/app/interfaces/Ithought';
 import { ThoughtService } from '../thought.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-thought',
@@ -10,28 +9,37 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./edit-thought.component.css']
 })
 export class EditThoughtComponent implements OnInit {
-  thought: Thought = {
-    id: 0,
-    content: '',
-    author: '',
-    model: ThoughtModel.Modelo1
-  };
+  form!: FormGroup;
 
   constructor(
     private service: ThoughtService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.service.searchById(Number(id)).subscribe((thought) => {
-      this.thought = thought;
+      console.log(thought);
+      
+      this.form = this.formBuilder.group({
+        id: [thought.id],
+        content: [thought.content, Validators.compose([
+          Validators.required,
+          Validators.pattern(/(.|\s)*\S(.|\s)*/), 
+        ])],
+        author: [thought.author, Validators.compose([
+          Validators.required,
+          Validators.minLength(3),
+        ])],
+        model: [thought.model]
+      });
     });
   }
 
   editThought() {
-    this.service.edit(this.thought).subscribe(() => {
+    this.service.edit(this.form.value).subscribe(() => {      
       alert('Editado com sucesso.');
       this.returnToHome();
     });
