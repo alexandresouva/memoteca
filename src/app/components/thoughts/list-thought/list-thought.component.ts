@@ -9,10 +9,22 @@ import { ThoughtService } from '../thought.service';
 })
 export class ListThoughtComponent implements OnInit {
   thoughtList: Thought[] = [];
+  currentPage = 1;
+  hasNewThoughts = true;
 
   constructor (private service: ThoughtService) {}
 
   ngOnInit(): void {
-    this.service.list().subscribe((thoughtList) => this.thoughtList = thoughtList);
+    this.service.list(this.currentPage).subscribe((thoughtList) => this.thoughtList = thoughtList);
+  }
+
+  loadMoreThoughts() {
+    this.service.list(++this.currentPage).subscribe(thoughts => {
+      this.thoughtList.push(...thoughts);
+
+      if (!thoughts.length) {
+        this.hasNewThoughts = false;
+      }
+    });
   }
 }

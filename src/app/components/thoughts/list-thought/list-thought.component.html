@@ -9,6 +9,11 @@
       </div>
     </div>
 </section>
+<app-button-load-more 
+  [hasNewThoughts]="hasNewThoughts" 
+  (click)="loadMoreThoughts()"
+>
+</app-button-load-more>
 
 <!-- Se a lista de pensamentos estivar vazia -->
 <ng-template #emptyList>
