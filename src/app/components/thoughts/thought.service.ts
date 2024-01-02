@@ -32,6 +32,11 @@ export class ThoughtService {
     return this.http.put<Thought>(url, thought);
   }
 
+  changeFavoriteStatus(thought: Thought): Observable<Thought> {
+    thought.favorite = !thought.favorite;
+    return this.edit(thought);
+  }
+
   delete(id: number): Observable<Thought> {
     const url = `${this.API}/${id}`;
     return this.http.delete<Thought>(url);

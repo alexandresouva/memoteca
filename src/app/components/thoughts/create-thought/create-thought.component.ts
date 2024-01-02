@@ -29,7 +29,8 @@ export class CreateThoughtComponent implements OnInit {
         Validators.required,
         Validators.minLength(3),
       ])],
-      model: [ThoughtModel.Modelo1]
+      model: [ThoughtModel.Modelo1],
+      favorite: [false]
     });
   }
 

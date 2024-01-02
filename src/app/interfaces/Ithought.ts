@@ -4,6 +4,7 @@ export interface Thought {
     id?: number,
     content: string,
     author: string,
-    model: ThoughtModel
+    model: ThoughtModel,
+    favorite: boolean
   }
   

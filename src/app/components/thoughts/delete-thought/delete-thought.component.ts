@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ThoughtModel } from 'src/app/enums/thoughtModel';
 import { Thought } from 'src/app/interfaces/Ithought';
 import { ThoughtService } from '../thought.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,12 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./delete-thought.component.css']
 })
 export class DeleteThoughtComponent implements OnInit {
-  thought: Thought = {
-    id: 1,
-    content: '',
-    author: '',
-    model: ThoughtModel.Modelo1
-  };
+  thought!: Thought;
 
   constructor(
     private service: ThoughtService,
