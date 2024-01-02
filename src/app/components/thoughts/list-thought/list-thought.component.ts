@@ -15,16 +15,26 @@ export class ListThoughtComponent implements OnInit {
   constructor (private service: ThoughtService) {}
 
   ngOnInit(): void {
-    this.service.list(this.currentPage).subscribe((thoughtList) => this.thoughtList = thoughtList);
+    this.service.list(this.currentPage, this.filter).subscribe((thoughtList) => this.thoughtList = thoughtList);
   }
 
   loadMoreThoughts() {
-    this.service.list(++this.currentPage).subscribe(thoughts => {
+    this.service.list(++this.currentPage, this.filter).subscribe(thoughts => {
       this.thoughtList.push(...thoughts);
-
+      
       if (!thoughts.length) {
         this.hasNewThoughts = false;
       }
+    });
+  }
+  
+  // Filter thoughts
+  filter = '';
+  searchThoughts() {
+    this.currentPage = 1;
+    this.hasNewThoughts = true;
+    this.service.list(this.currentPage, this.filter).subscribe((thoughtsSearched) => {
+      this.thoughtList = thoughtsSearched;
     });
   }
 }
