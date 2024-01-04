@@ -19,6 +19,7 @@ A Memoteca utiliza o Json-Server para simular um servidor back-end e realizar re
 ## Front End
 
 Na raiz do diretório, execute `npm start` para iniciar o servidor de desenvolvimento. A aplicação será inicializada na porta 4200 por padrão, para visualizá-la acesse: `http://localhost:4200/`. A aplicação será recarregado automaticamente se você alterar qualquer um dos arquivos de origem.
+
 ---
 
 > _“Se você se empenhar o suficiente pode fazer qualquer história resultar.” <div style="text-align: right"> Saul Goodman_ </div>
