@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Thought } from 'src/app/interfaces/Ithought';
 import { ThoughtService } from '../thought.service';
 
@@ -9,6 +9,7 @@ import { ThoughtService } from '../thought.service';
 })
 export class ThoughtComponent implements OnInit {
   @Input() thought!: Thought;
+  @Output() favoriteEmitter = new EventEmitter<boolean>();
   favoriteStatus = '';
 
   ngOnInit(): void {
@@ -29,8 +30,9 @@ export class ThoughtComponent implements OnInit {
   }
 
   updateFavoriteIcon() {
-    this.service.changeFavoriteStatus(this.thought).subscribe(
-      () => this.handleThoughtFavorite()
-    );
+    this.service.changeFavoriteStatus(this.thought).subscribe(() => {
+      this.handleThoughtFavorite();
+      this.favoriteEmitter.emit(this.thought.favorite);
+    });
   }
 }

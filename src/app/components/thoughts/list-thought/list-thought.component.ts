@@ -8,33 +8,64 @@ import { ThoughtService } from '../thought.service';
   styleUrls: ['./list-thought.component.css']
 })
 export class ListThoughtComponent implements OnInit {
-  thoughtList: Thought[] = [];
+  thoughtsList: Thought[] = [];
   currentPage = 1;
   hasNewThoughts = true;
+  showOnlyFavorites = false;
 
-  constructor (private service: ThoughtService) {}
+  constructor(private service: ThoughtService) { }
 
   ngOnInit(): void {
-    this.service.list(this.currentPage, this.filter).subscribe((thoughtList) => this.thoughtList = thoughtList);
+    this.listThoughts();
   }
 
   loadMoreThoughts() {
-    this.service.list(++this.currentPage, this.filter).subscribe(thoughts => {
-      this.thoughtList.push(...thoughts);
-      
-      if (!thoughts.length) {
-        this.hasNewThoughts = false;
-      }
-    });
+    if (this.hasNewThoughts) {
+      this.service.list(++this.currentPage, this.filter, this.showOnlyFavorites).subscribe(thoughts => {
+        this.thoughtsList.push(...thoughts);
+
+        if (!thoughts.length) {
+          this.hasNewThoughts = false;
+        }
+      });
+    }
   }
-  
+
   // Filter thoughts
   filter = '';
   searchThoughts() {
+    this.resetConfigs();
+    this.service.list(this.currentPage, this.filter, this.showOnlyFavorites).subscribe(
+      (thoughtsSearched) => this.thoughtsList = thoughtsSearched
+    );
+  }
+
+  // List 
+  resetConfigs() {
     this.currentPage = 1;
     this.hasNewThoughts = true;
-    this.service.list(this.currentPage, this.filter).subscribe((thoughtsSearched) => {
-      this.thoughtList = thoughtsSearched;
-    });
+  }
+
+  listThoughts() {
+    this.resetConfigs();
+    this.showOnlyFavorites = false;
+
+    this.service.list(this.currentPage, this.filter, this.showOnlyFavorites).subscribe((thoughtsList) => this.thoughtsList = thoughtsList);
+  }
+
+  listFavoritesThoughts() {
+    this.resetConfigs();
+    this.showOnlyFavorites = true;
+
+    this.service.list(this.currentPage, this.filter, this.showOnlyFavorites).subscribe(
+      (favoriteThoughts) => {
+        this.thoughtsList = favoriteThoughts;
+      });    
+  }
+
+  onFavoriteEmitter(isFavorite: boolean) {
+    if (!isFavorite && this.showOnlyFavorites) {
+      this.listFavoritesThoughts();
+    }
   }
 }
