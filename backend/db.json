@@ -2,23 +2,23 @@
   "thoughts": [
     {
       "id": 2,
-      "content": "Estudando Angular",
-      "author": "Dev Alura",
+      "content": "Faça ou não faça, tentativa não há.",
+      "author": "Mestre Yoda",
       "model": "modelo2",
       "favorite": true
     },
     {
       "id": 4,
-      "content": "O card é um componente burro (dump component), apenas recebe a informação através do Output!",
-      "author": "Ale",
-      "model": "modelo3",
+      "content": "Prefiro morrer do que perder a vida.",
+      "author": "Chaves",
+      "model": "modelo2",
       "favorite": true
     },
     {
       "id": 6,
-      "content": "A lista geralmente é responsável pela consulta das informações e então escolhe o que fazer a seguir.",
-      "author": "Ale",
-      "model": "modelo2",
+      "content": "You know who I am. Say my name.",
+      "author": "Heisenberg",
+      "model": "modelo3",
       "favorite": true
     },
     {
